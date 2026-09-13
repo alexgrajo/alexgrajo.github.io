@@ -861,3 +861,105 @@ body {
         animation-duration: 24s;
     }
 }
+/* Paste this at the very bottom of your existing style.css. */
+#feedback.client-feedback {
+  padding: 100px 0;
+  background: #f7f6f2;
+  color: #111;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: left;
+}
+#feedback.client-feedback,
+#feedback.client-feedback * { box-sizing: border-box; }
+#feedback .cf-wrap { width: min(1120px, 90%); margin: 0 auto; }
+#feedback .cf-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+  margin-bottom: 28px;
+}
+#feedback .cf-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 16px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+#feedback .cf-eyebrow span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #48704a;
+}
+#feedback h2 {
+  margin: 0;
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1.06;
+  letter-spacing: -2.5px;
+  font-weight: 700;
+}
+#feedback h2 em { display: block; font-family: Georgia, serif; font-weight: 400; }
+#feedback .cf-intro { max-width: 340px; margin: 0; color: #61615a; font-size: 15px; line-height: 1.7; }
+#feedback .cf-notice { margin: 0 0 18px; color: #68685f; font-size: 12px; line-height: 1.6; }
+#feedback .cf-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+#feedback .cf-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  margin: 0;
+  padding: 28px;
+  border: 1px solid #deddd7;
+  border-radius: 18px;
+  background: #fff;
+  color: #24251f;
+  overflow-wrap: anywhere;
+}
+#feedback .cf-card-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 24px; }
+#feedback .cf-service { font-size: 10px; line-height: 1.5; font-weight: 700; letter-spacing: 1.2px; }
+#feedback .cf-quote-mark { height: 40px; color: #747f64; font-family: Georgia, serif; font-size: 64px; line-height: 1; }
+#feedback blockquote { flex: 1; margin: 0 0 32px; padding: 0; border: 0; }
+#feedback blockquote p { margin: 0; font-size: 18px; line-height: 1.65; }
+#feedback .cf-person { display: flex; align-items: center; gap: 12px; padding-top: 22px; border-top: 1px solid #e8e7e1; }
+#feedback .cf-avatar { display: grid; place-items: center; flex: 0 0 40px; height: 40px; border-radius: 50%; background: #eeeee6; font-size: 12px; font-weight: 700; }
+#feedback .cf-person strong { display: block; font-size: 13px; line-height: 1.6; }
+#feedback .cf-role { display: block; color: #68685f; font-size: 12px; line-height: 1.6; }
+#feedback .cf-card-featured { background: #242a22; color: #f7f6f2; border-color: #242a22; }
+#feedback .cf-card-featured .cf-service,
+#feedback .cf-card-featured .cf-quote-mark { color: #d4e8a5; }
+#feedback .cf-card-featured .cf-person { border-color: #485043; }
+#feedback .cf-card-featured .cf-avatar { background: #3d4837; color: #d4e8a5; }
+#feedback .cf-card-featured .cf-role { color: #c4cbbb; }
+#feedback .cf-footer { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 32px; }
+#feedback .cf-footer p { margin: 0; color: #61615a; font-size: 14px; line-height: 1.7; }
+#feedback .cf-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  min-height: 48px;
+  padding: 12px 20px;
+  border: 1px solid #111;
+  border-radius: 999px;
+  color: #111;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
+  text-decoration: none;
+}
+#feedback .cf-button:hover { color: #fff; background: #111; }
+#feedback .cf-button:focus-visible { outline: 3px solid #48704a; outline-offset: 4px; }
+@media (max-width: 850px) {
+  #feedback .cf-header { align-items: flex-start; flex-direction: column; gap: 20px; }
+  #feedback .cf-intro { max-width: 540px; }
+  #feedback .cf-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 550px) {
+  #feedback.client-feedback { padding: 64px 0; }
+  #feedback h2 { letter-spacing: -1.5px; }
+  #feedback .cf-card { padding: 24px; }
+  #feedback .cf-footer { align-items: flex-start; flex-direction: column; gap: 16px; }
+  #feedback .cf-button { width: 100%; }
+}
