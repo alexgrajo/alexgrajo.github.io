@@ -861,3 +861,615 @@ body {
         animation-duration: 24s;
     }
 }
+/* ==========================================================
+   ALEX GRAJO PORTFOLIO
+   FOREST CODE + MINT FOG COLOR UPDATE
+   Primary: #075E46
+   Secondary: #E8FFF2
+   ========================================================== */
+
+:root {
+    --forest: #075E46;
+    --forest-dark: #064A38;
+    --forest-deep: #043D2F;
+
+    --mint: #E8FFF2;
+    --mint-soft: #F4FFF8;
+    --mint-border: #CDE8DB;
+
+    --white: #FFFFFF;
+    --black: #111111;
+
+    --text: #17211D;
+    --text-muted: #5F6F67;
+
+    --border: #D4E7DD;
+
+    --shadow:
+        0 15px 35px rgba(7, 94, 70, 0.10);
+}
+
+
+/* ==========================================================
+   GLOBAL
+   ========================================================== */
+
+body {
+    background: var(--white);
+    color: var(--text);
+}
+
+section {
+    border-bottom: 1px solid var(--border);
+}
+
+a {
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        opacity 0.2s ease;
+}
+
+
+/* ==========================================================
+   TOP MOVING MARQUEE
+   ========================================================== */
+
+.alex-marquee {
+    background: var(--forest);
+    border-bottom: 1px solid var(--forest-dark);
+}
+
+.alex-marquee-content > span,
+.marquee-link {
+    color: var(--white);
+}
+
+.marquee-link:hover {
+    color: var(--mint);
+    opacity: 1;
+}
+
+.marquee-divider {
+    color: var(--mint);
+}
+
+
+/* ==========================================================
+   HEADER / NAVIGATION
+   ========================================================== */
+
+.site-header {
+    background: rgba(255, 255, 255, 0.96);
+    border-bottom: 1px solid var(--border);
+}
+
+.logo {
+    color: var(--forest);
+}
+
+.nav-links a {
+    color: var(--text);
+}
+
+.nav-links a:hover {
+    color: var(--forest);
+}
+
+.nav-button {
+    background: var(--forest);
+    color: var(--white) !important;
+    border: 1px solid var(--forest);
+}
+
+.nav-button:hover {
+    background: var(--forest-dark);
+    border-color: var(--forest-dark);
+}
+
+
+/* ==========================================================
+   HERO
+   ========================================================== */
+
+.hero {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+}
+
+.hero-label {
+    color: var(--forest);
+}
+
+.hero h1 {
+    color: var(--text);
+}
+
+.hero-title {
+    color: var(--forest);
+}
+
+.hero-description {
+    color: var(--text-muted);
+}
+
+.hero-note {
+    color: var(--forest);
+}
+
+.hero-photo {
+    border: 1px solid var(--mint-border);
+}
+
+
+/* ==========================================================
+   HERO STATS
+   ========================================================== */
+
+.stat {
+    border-top: 1px solid var(--mint-border);
+}
+
+.stat strong {
+    color: var(--forest);
+}
+
+.stat span {
+    color: var(--text-muted);
+}
+
+
+/* ==========================================================
+   BUTTONS
+   ========================================================== */
+
+.button {
+    border: 1px solid var(--forest);
+}
+
+.button-dark {
+    background: var(--forest);
+    color: var(--white);
+    border-color: var(--forest);
+}
+
+.button-dark:hover {
+    background: var(--forest-dark);
+    border-color: var(--forest-dark);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+.button-light {
+    background: var(--mint);
+    color: var(--forest);
+    border-color: var(--forest);
+}
+
+.button-light:hover {
+    background: var(--forest);
+    color: var(--white);
+    border-color: var(--forest);
+}
+
+
+/* ==========================================================
+   SECTION LABELS
+   ========================================================== */
+
+.section-label {
+    color: var(--forest);
+}
+
+.section-title {
+    color: var(--text);
+}
+
+
+/* ==========================================================
+   ABOUT SECTION
+   ========================================================== */
+
+#about {
+    background: var(--mint);
+}
+
+.about-text {
+    color: var(--text-muted);
+}
+
+.info-card {
+    background: var(--white);
+    border: 1px solid var(--mint-border);
+    box-shadow: 0 10px 30px rgba(7, 94, 70, 0.05);
+}
+
+.info-item {
+    border-bottom: 1px solid var(--mint-border);
+}
+
+.info-item strong {
+    color: var(--forest);
+}
+
+.info-item span {
+    color: var(--text-muted);
+}
+
+
+/* ==========================================================
+   SKILLS / WHAT I DO
+   ========================================================== */
+
+#skills {
+    background: var(--white);
+}
+
+.skill-card {
+    background: var(--mint-soft);
+    border: 1px solid var(--mint-border);
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--forest);
+    box-shadow: var(--shadow);
+}
+
+.skill-number {
+    color: var(--forest);
+    font-weight: 700;
+}
+
+.skill-card h3 {
+    color: var(--forest);
+}
+
+.skill-card p {
+    color: var(--text-muted);
+}
+
+
+/* ==========================================================
+   FEATURED PROJECTS
+   ========================================================== */
+
+#projects {
+    background: var(--mint);
+}
+
+.project-card {
+    background: var(--white);
+    border: 1px solid var(--mint-border);
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--forest);
+    box-shadow: var(--shadow);
+}
+
+.project-image {
+    border-bottom: 1px solid var(--mint-border);
+}
+
+.project-content h3 {
+    color: var(--forest);
+}
+
+.project-content p {
+    color: var(--text-muted);
+}
+
+.project-tags span {
+    background: var(--mint);
+    border: 1px solid var(--mint-border);
+    color: var(--forest);
+}
+
+.project-content > a {
+    color: var(--forest);
+    font-weight: 700;
+}
+
+.project-content > a:hover {
+    color: var(--forest-dark);
+}
+
+
+/* ==========================================================
+   CASE STUDY — HALLUNACO
+   ========================================================== */
+
+.case-study {
+    background: var(--white);
+}
+
+.case-study-header p {
+    color: var(--text-muted);
+}
+
+.case-image {
+    background: var(--white);
+    border: 1px solid var(--mint-border);
+    box-shadow: 0 8px 25px rgba(7, 94, 70, 0.06);
+}
+
+.case-label {
+    background: var(--white);
+    border-top: 1px solid var(--mint-border);
+    color: var(--forest);
+}
+
+.case-arrow {
+    color: var(--forest);
+}
+
+.case-detail {
+    background: var(--mint);
+    border: 1px solid var(--mint-border);
+    color: var(--text);
+}
+
+.case-detail::first-letter {
+    color: var(--forest);
+}
+
+
+/* ==========================================================
+   MUNCHKIN MALL CASE STUDY
+   ========================================================== */
+
+#munchkinmall {
+    background: var(--mint);
+}
+
+#munchkinmall .case-image {
+    background: var(--white);
+}
+
+#munchkinmall .case-detail {
+    background: var(--white);
+    border-color: var(--mint-border);
+}
+
+#munchkinmall p[style] {
+    color: var(--text-muted) !important;
+}
+
+
+/* ==========================================================
+   CLIENT FEEDBACK
+   ========================================================== */
+
+.feedback-section {
+    background: var(--white);
+}
+
+.feedback-intro {
+    color: var(--text-muted);
+}
+
+.feedback-image {
+    border: 1px solid var(--mint-border);
+    box-shadow: 0 12px 30px rgba(7, 94, 70, 0.07);
+}
+
+
+/* ==========================================================
+   EXPERIENCE
+   ========================================================== */
+
+#experience {
+    background: var(--mint);
+}
+
+.experience-item {
+    border-top: 1px solid var(--mint-border);
+}
+
+.experience-item:last-child {
+    border-bottom: 1px solid var(--mint-border);
+}
+
+.experience-item strong {
+    color: var(--text);
+}
+
+.experience-item .date {
+    color: var(--forest);
+    font-weight: 600;
+}
+
+.experience-item p {
+    color: var(--text-muted);
+}
+
+
+/* ==========================================================
+   LET'S WORK TOGETHER CARD
+   ========================================================== */
+
+#contact {
+    background: var(--forest);
+    color: var(--white);
+}
+
+#contact .section-label {
+    color: var(--mint);
+}
+
+#contact .section-title {
+    color: var(--white);
+}
+
+#contact .contact-text {
+    color: var(--mint);
+}
+
+#contact .button-dark {
+    background: var(--mint);
+    color: var(--forest);
+    border-color: var(--mint);
+}
+
+#contact .button-dark:hover {
+    background: var(--white);
+    color: var(--forest);
+    border-color: var(--white);
+}
+
+#contact .contact-email {
+    color: var(--white);
+    border-bottom: 1px solid var(--mint);
+}
+
+#contact .contact-email:hover {
+    color: var(--mint);
+}
+
+#contact .contact-links a {
+    color: var(--mint);
+    border: 1px solid rgba(232, 255, 242, 0.45);
+    background: transparent;
+}
+
+#contact .contact-links a:hover {
+    color: var(--forest);
+    background: var(--mint);
+    border-color: var(--mint);
+}
+
+
+/* ==========================================================
+   CONTACT STYLES
+   Existing classes if used elsewhere
+   ========================================================== */
+
+.contact-section {
+    background: var(--forest);
+    color: var(--white);
+}
+
+.contact-section .section-label {
+    color: var(--mint);
+}
+
+.contact-section .section-title {
+    color: var(--white);
+}
+
+.contact-text {
+    color: var(--text-muted);
+}
+
+.contact-section .contact-text {
+    color: var(--mint);
+}
+
+.contact-email {
+    color: var(--forest);
+    border-bottom: 1px solid var(--forest);
+}
+
+.contact-section .contact-email {
+    color: var(--white);
+    border-bottom-color: var(--mint);
+}
+
+.contact-links a {
+    border: 1px solid var(--mint-border);
+    color: var(--forest);
+}
+
+.contact-section .contact-links a {
+    border-color: rgba(232, 255, 242, 0.45);
+    color: var(--mint);
+}
+
+
+/* ==========================================================
+   FOOTER
+   ========================================================== */
+
+.site-footer {
+    background: var(--forest-deep);
+    color: #BFE4D2;
+    border-top: 1px solid var(--forest);
+}
+
+.site-footer a {
+    color: var(--mint);
+}
+
+.site-footer a:hover {
+    color: var(--white);
+}
+
+
+/* ==========================================================
+   MOBILE MENU
+   ========================================================== */
+
+.menu-toggle {
+    background: var(--mint);
+    color: var(--forest);
+    border: 1px solid var(--forest);
+}
+
+@media (max-width: 650px) {
+
+    .nav-links {
+        background: var(--white);
+        border-bottom: 1px solid var(--mint-border);
+    }
+
+    #contact {
+        padding: 30px 24px;
+        border-radius: 10px;
+    }
+}
+
+
+/* ==========================================================
+   TEXT SELECTION
+   ========================================================== */
+
+::selection {
+    background: var(--forest);
+    color: var(--white);
+}
+
+
+/* ==========================================================
+   ACCESSIBILITY / FOCUS
+   ========================================================== */
+
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid var(--forest);
+    outline-offset: 4px;
+}
+
+
+/* ==========================================================
+   OPTIONAL SMOOTHER HOVER
+   ========================================================== */
+
+.project-card,
+.skill-card,
+.button,
+.nav-button,
+.contact-links a {
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background-color 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease;
+}
