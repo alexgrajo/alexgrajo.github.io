@@ -1347,49 +1347,69 @@ a {
 
 
 /* ==========================================================
-   CONTACT STYLES
-   Existing classes if used elsewhere
+   CONTACT SECTION — SOFTER VERSION
    ========================================================== */
 
+#contact,
 .contact-section {
-    background: var(--forest);
-    color: var(--white);
+    background: #E8FFF2;
+    color: #17211D;
 }
 
+#contact .section-label,
 .contact-section .section-label {
-    color: var(--mint);
+    color: #075E46;
 }
 
+#contact .section-title,
 .contact-section .section-title {
-    color: var(--white);
+    color: #17211D;
 }
 
-.contact-text {
-    color: var(--text-muted);
-}
-
+#contact .contact-text,
 .contact-section .contact-text {
-    color: var(--mint);
+    color: #5F6F67;
 }
 
-.contact-email {
-    color: var(--forest);
-    border-bottom: 1px solid var(--forest);
-}
-
+#contact .contact-email,
 .contact-section .contact-email {
-    color: var(--white);
-    border-bottom-color: var(--mint);
+    color: #075E46;
+    border-bottom: 1px solid #075E46;
 }
 
-.contact-links a {
-    border: 1px solid var(--mint-border);
-    color: var(--forest);
+#contact .contact-email:hover,
+.contact-section .contact-email:hover {
+    color: #064A38;
 }
 
+/* Main contact button */
+#contact .button-dark,
+.contact-section .button-dark {
+    background: #075E46;
+    color: #FFFFFF;
+    border-color: #075E46;
+}
+
+#contact .button-dark:hover,
+.contact-section .button-dark:hover {
+    background: #064A38;
+    color: #FFFFFF;
+    border-color: #064A38;
+}
+
+/* Social / contact links */
+#contact .contact-links a,
 .contact-section .contact-links a {
-    border-color: rgba(232, 255, 242, 0.45);
-    color: var(--mint);
+    background: #FFFFFF;
+    color: #075E46;
+    border: 1px solid #CDE8DB;
+}
+
+#contact .contact-links a:hover,
+.contact-section .contact-links a:hover {
+    background: #075E46;
+    color: #FFFFFF;
+    border-color: #075E46;
 }
 
 
