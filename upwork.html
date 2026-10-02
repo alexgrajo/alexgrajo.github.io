@@ -11,15 +11,52 @@
 
     <meta
         name="description"
-        content="Alex Grajo is a Shopify and e-commerce specialist focused on store setup, customization, product SEO, customer management, inventory, and e-commerce growth."
+        content="Alex Grajo is a Shopify specialist focused on store setup, theme customization, Liquid edits, product and collection structure, app integration, product SEO, customer management and e-commerce growth."
     >
+
+    <link rel="canonical" href="https://alexgrajo.github.io/upwork.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Alex Grajo">
+    <meta property="og:title" content="Alex Grajo | Shopify &amp; E-commerce Specialist">
+    <meta property="og:description" content="Shopify and e-commerce specialist building clean, conversion-focused stores: setup, theme customization, Liquid edits, SEO and store management.">
+    <meta property="og:url" content="https://alexgrajo.github.io/upwork.html">
+    <meta property="og:image" content="https://alexgrajo.github.io/images/alex-photo.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#075E46">
 
     <link rel="stylesheet" href="style.css">
 
 </head>
 
 
-<body><!-- TOP MARQUEE -->
+<body>
+
+    <!-- =========================================
+         3D STORE JOURNEY (decorative background)
+         The camera walks through a Shopify store as
+         you scroll. Hidden if WebGL is unavailable.
+         ========================================= -->
+
+    <canvas id="bg3d" class="bg-3d" aria-hidden="true"></canvas>
+
+    <nav
+        class="journey-rail"
+        id="journeyRail"
+        aria-label="3D store tour progress"
+    ></nav>
+
+    <button
+        type="button"
+        class="journey-toggle"
+        id="toggle3d"
+        aria-pressed="true"
+    >
+        3D world: on
+    </button>
+
+
+    <!-- TOP MARQUEE -->
 <div class="alex-marquee">
   <div class="alex-marquee-track">
 
@@ -166,7 +203,7 @@
 
                 <!-- Hero Text -->
 
-                <div class="hero-content">
+                <div class="hero-content glass">
 
                     <div class="hero-label">
                         HELLO, I'M
@@ -186,9 +223,10 @@
                     <p class="hero-description">
 
                         I build and optimize Shopify stores that are clean,
-                        user-friendly, and designed to support growth —
-                        from store setup and theme customization to product
-                        SEO, email marketing, and ongoing e-commerce management.
+                        user-friendly and built to sell — store setup, theme
+                        customization with Liquid edits, product and collection
+                        structure, app integrations, product SEO, email
+                        marketing and ongoing e-commerce management.
 
                     </p>
 
@@ -220,11 +258,11 @@
                         <div class="stat">
 
                             <strong>
-                                3+
+                                5+
                             </strong>
 
                             <span>
-                                Shopify Stores
+                                Shopify Stores Built
                             </span>
 
                         </div>
@@ -233,11 +271,11 @@
                         <div class="stat">
 
                             <strong>
-                                Reliable
+                                7
                             </strong>
 
                             <span>
-                                Client Support
+                                Core Shopify Skills
                             </span>
 
                         </div>
@@ -307,7 +345,7 @@
 
         <section id="about">
 
-            <div class="container">
+            <div class="container glass">
 
                 <div class="section-label">
                     01 — ABOUT
@@ -330,9 +368,10 @@
 
                                 I'm a Shopify and e-commerce specialist with
                                 hands-on experience across store setup,
-                                theme customization, product listing,
-                                SEO optimization, order management,
-                                inventory tracking, and email marketing.
+                                theme customization and Liquid edits, product
+                                and collection structure, app integration,
+                                SEO optimization, order management, inventory
+                                tracking, and email marketing.
 
                             </p>
 
@@ -435,7 +474,7 @@
 
         <section id="skills">
 
-            <div class="container">
+            <div class="container glass">
 
                 <div class="section-label">
                     02 — SKILLS
@@ -446,13 +485,17 @@
                     What I Do
                 </h2>
 
+                <p class="section-intro">
+                    Seven core Shopify skills, from a blank account to a
+                    finished, mobile-ready storefront.
+                </p>
+
 
                 <div class="skills-grid">
 
+                    <!-- Skill 01 -->
 
-                    <!-- Skill 1 -->
-
-                    <div class="skill-card">
+                    <article class="skill-card">
 
                         <div class="skill-number">
                             01
@@ -464,87 +507,193 @@
 
                         <p>
 
-                            Store setup, theme customization,
-                            product listings, collections,
-                            navigation, and Shopify storefront
-                            management.
+                            From a blank account to a launch-ready storefront — settings, sales channels and everything that has to be right before you sell.
 
                         </p>
 
-                    </div>
+                        <ul class="skill-list">
+
+                            <li>Store setup &amp; settings</li>
+                            <li>Payments &amp; shipping zones</li>
+                            <li>Markets, taxes &amp; currencies</li>
+
+                        </ul>
+
+                    </article>
 
 
+                    <!-- Skill 02 -->
 
-                    <!-- Skill 2 -->
-
-                    <div class="skill-card">
+                    <article class="skill-card">
 
                         <div class="skill-number">
                             02
                         </div>
 
                         <h3>
-                            Store Design & Customization
+                            Theme Customization
                         </h3>
 
                         <p>
 
-                            Clean, modern storefronts with
-                            customized layouts, product presentation,
-                            branding, and responsive user experiences.
+                            Customizing Dawn, Shrine and premium themes so the storefront actually matches the brand instead of looking like a template.
 
                         </p>
 
-                    </div>
+                        <ul class="skill-list">
+
+                            <li>Dawn, Shrine &amp; premium themes</li>
+                            <li>Sections &amp; layout changes</li>
+                            <li>Typography, colour &amp; branding</li>
+
+                        </ul>
+
+                    </article>
 
 
+                    <!-- Skill 03 -->
 
-                    <!-- Skill 3 -->
-
-                    <div class="skill-card">
+                    <article class="skill-card">
 
                         <div class="skill-number">
                             03
                         </div>
 
                         <h3>
-                            SEO & E-commerce Marketing
+                            Liquid Edits &amp; Code Tweaks
                         </h3>
 
                         <p>
 
-                            Product SEO, keyword-focused content,
-                            email marketing, automation, and
-                            e-commerce optimization.
+                            Hand-editing Shopify Liquid, HTML, CSS and JSON templates for the changes the theme editor can't reach.
 
                         </p>
 
-                    </div>
+                        <ul class="skill-list">
+
+                            <li>Liquid template edits</li>
+                            <li>HTML · CSS · JSON</li>
+                            <li>Custom sections &amp; snippets</li>
+
+                        </ul>
+
+                    </article>
 
 
+                    <!-- Skill 04 -->
 
-                    <!-- Skill 4 -->
-
-                    <div class="skill-card">
+                    <article class="skill-card">
 
                         <div class="skill-number">
                             04
                         </div>
 
                         <h3>
-                            Customer & Order Management
+                            Product &amp; Collection Setup
                         </h3>
 
                         <p>
 
-                            Customer support, order management,
-                            inventory tracking, issue resolution,
-                            and smooth customer experiences.
+                            Listing products properly — variants, options, metafields, tags and collections that make a catalogue easy to browse and buy.
 
                         </p>
 
-                    </div>
+                        <ul class="skill-list">
 
+                            <li>Product listings &amp; variants</li>
+                            <li>Metafields &amp; tags</li>
+                            <li>Collections &amp; merchandising</li>
+
+                        </ul>
+
+                    </article>
+
+
+                    <!-- Skill 05 -->
+
+                    <article class="skill-card">
+
+                        <div class="skill-number">
+                            05
+                        </div>
+
+                        <h3>
+                            Navigation &amp; Store Architecture
+                        </h3>
+
+                        <p>
+
+                            Menus, mega menus, filters, search and breadcrumbs arranged so customers reach the right product in a couple of clicks.
+
+                        </p>
+
+                        <ul class="skill-list">
+
+                            <li>Menus &amp; mega menus</li>
+                            <li>Filters &amp; site search</li>
+                            <li>Breadcrumbs &amp; URL structure</li>
+
+                        </ul>
+
+                    </article>
+
+
+                    <!-- Skill 06 -->
+
+                    <article class="skill-card">
+
+                        <div class="skill-number">
+                            06
+                        </div>
+
+                        <h3>
+                            App Integration &amp; Configuration
+                        </h3>
+
+                        <p>
+
+                            Choosing and installing the right apps — reviews, email, upsells, shipping — and wiring them into the theme cleanly.
+
+                        </p>
+
+                        <ul class="skill-list">
+
+                            <li>Reviews &amp; email apps</li>
+                            <li>Upsells &amp; bundles</li>
+                            <li>Shipping &amp; label tools</li>
+
+                        </ul>
+
+                    </article>
+
+
+                    <!-- Skill 07 -->
+
+                    <article class="skill-card">
+
+                        <div class="skill-number">
+                            07
+                        </div>
+
+                        <h3>
+                            Responsive &amp; Mobile-First Storefronts
+                        </h3>
+
+                        <p>
+
+                            Every build is tested on phone, tablet and desktop for layout, speed and a checkout flow that works everywhere.
+
+                        </p>
+
+                        <ul class="skill-list">
+
+                            <li>Mobile &amp; tablet QA</li>
+                            <li>Image sizing &amp; page speed</li>
+                            <li>Cross-device checkout</li>
+
+                        </ul>
+
+                    </article>
 
                 </div>
 
@@ -855,9 +1004,9 @@
              HALLUNACO CASE STUDY
              ========================================= -->
 
-        <section class="case-study">
+        <section class="case-study" id="hallunaco">
 
-            <div class="container">
+            <div class="container glass">
 
 
                 <div class="case-study-header">
@@ -977,7 +1126,7 @@
         </section>
 <!-- MUNCHKIN MALL CASE STUDY -->
 <section class="case-study" id="munchkinmall">
-  <div class="container">
+  <div class="container glass">
 
     <div class="case-study-header">
       <div class="section-label">CASE STUDY</div>
@@ -1069,7 +1218,7 @@
              ========================================= -->
 
       <section id="feedback" class="feedback-section">
-  <div class="container">
+  <div class="container glass">
 
     <div class="section-label">
       FEEDBACK
@@ -1104,7 +1253,7 @@
 
         <section id="experience">
 
-            <div class="container">
+            <div class="container glass">
 
 
                 <div class="experience-grid">
@@ -1245,7 +1394,7 @@
 
                     <!-- Contact CTA -->
 
-                    <div id="contact">
+                    <div id="contact" class="contact-card">
 
                         <div class="section-label">
                             05 — LET'S WORK TOGETHER
@@ -1328,6 +1477,9 @@
     <!-- JavaScript -->
 
     <script src="script.js"></script>
+
+    <!-- 3D store journey — Three.js is vendored locally in /vendor -->
+    <script type="module" src="experience.js"></script>
 
 
 </body>
