@@ -1,0 +1,92 @@
+/* Munchkin Mall analytics case study. Scoped to preserve the existing portfolio. */
+.analytics-case {
+  margin-top: 52px;
+  padding-top: 38px;
+  border-top: 1px solid #cde8db;
+  scroll-margin-top: 150px;
+  color: #17211d;
+}
+.analytics-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 24px;
+}
+.analytics-heading .section-label { margin-bottom: 10px; }
+.analytics-heading h3 {
+  font-size: clamp(25px, 3vw, 36px);
+  line-height: 1.18;
+  letter-spacing: -1px;
+  color: #075e46;
+  margin-bottom: 14px;
+}
+.analytics-intro { max-width: 660px; color: #4b6157; }
+.analytics-period {
+  padding: 14px 18px;
+  background: #f4fff8;
+  border: 1px solid #cde8db;
+  border-radius: 12px;
+  color: #075e46;
+  font-size: 15px;
+  font-weight: 700;
+}
+.analytics-period > span { display: block; font-size: 10px; letter-spacing: 1.4px; margin-bottom: 4px; }
+.analytics-period small { display: block; color: #4b6157; font-size: 12px; font-weight: 400; margin-top: 4px; }
+.analytics-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin: 28px 0;
+}
+.analytics-metrics > div {
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #cde8db;
+  border-radius: 12px;
+}
+.analytics-metrics dt { color: #4b6157; font-size: 13px; font-weight: 600; }
+.analytics-metrics dd {
+  margin: 5px 0;
+  font-size: clamp(24px, 2.7vw, 34px);
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1.25;
+  color: #075e46;
+  font-variant-numeric: tabular-nums;
+}
+.analytics-metrics span { display: block; margin-top: 6px; font-size: 12px; font-weight: 400; letter-spacing: 0; line-height: 1.6; color: #4b6157; }
+.analytics-report {
+  margin: 0;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #cde8db;
+  border-radius: 14px;
+  box-shadow: 0 10px 28px rgba(7, 94, 70, .06);
+}
+.analytics-image-link { display: block; overflow: hidden; }
+.analytics-image-link img { width: 100%; height: clamp(230px, 38vw, 440px); object-fit: cover; object-position: top; }
+.analytics-report figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 20px;
+  padding: 16px 20px;
+  border-top: 1px solid #cde8db;
+  font-size: 13px;
+  color: #4b6157;
+}
+.analytics-report figcaption a { color: #075e46; font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
+.analytics-case a:focus-visible { outline: 3px solid #075e46; outline-offset: -4px; }
+.analytics-context { margin-top: 16px; max-width: 880px; color: #4b6157; font-size: 12px; }
+@media (max-width: 900px) {
+  .analytics-heading { grid-template-columns: 1fr; gap: 18px; }
+  .analytics-period { justify-self: start; }
+  .analytics-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 480px) {
+  .analytics-metrics { gap: 10px; }
+  .analytics-metrics > div { padding: 14px 10px; }
+  .analytics-metrics dd { font-size: clamp(19px, 5.4vw, 24px); letter-spacing: -.7px; }
+  .analytics-report figcaption { padding: 14px; }
+}
