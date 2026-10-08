@@ -93,6 +93,8 @@ h2{font-size:clamp(1.6rem,4vw,2.4rem);margin:6px 0 8px;line-height:1.15}
 .shot:after{content:"";position:absolute;left:0;right:0;bottom:0;height:90px;background:linear-gradient(transparent,var(--bg));pointer-events:none}
 .shotcap{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:.8rem;color:var(--muted);margin-top:8px}
 .shotcap a{color:var(--accent);font-weight:800;text-decoration:none}
+.leadshot{display:block;margin-top:24px;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--surface)}
+.leadshot img{display:block;width:100%;height:auto}
 .sl{overflow-x:auto;border-radius:18px;border:1px solid var(--line);margin-top:8px;background:var(--surface)}
 .lg{display:flex;justify-content:space-between;font-size:.72rem;font-weight:800;letter-spacing:1.5px;color:var(--muted);margin-top:22px}
 .ba.tbl{display:grid;height:auto;min-width:720px;margin:0;border:0;border-radius:0;touch-action:pan-x pan-y}
@@ -111,9 +113,10 @@ h2{font-size:clamp(1.6rem,4vw,2.4rem);margin:6px 0 8px;line-height:1.15}
 .thumb{position:relative;overflow:hidden;height:150px;text-decoration:none}
 .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top}
 .card .vw{display:inline-block;margin-top:10px;font-weight:800;color:var(--accent);text-decoration:none;font-size:.85rem}
-.ba{height:clamp(240px,38vw,380px)!important}
+.ba:not(.tbl){height:clamp(240px,38vw,380px)}
 .ba .ly img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top}
 .ba .pill{z-index:2}
+.ba img{pointer-events:none;-webkit-user-drag:none;user-select:none;-webkit-user-select:none}
 .visit{display:inline-block;margin-top:18px;font-weight:800;color:var(--accent);text-decoration:none;border:1px solid var(--accent);border-radius:999px;padding:8px 18px;font-size:.88rem}
 .met{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:20px}
 .met div{background:var(--soft);border-radius:14px;padding:14px}.met b{display:block;font-size:1.35rem;color:var(--accent)}.met span{font-size:.75rem;color:var(--muted)}
@@ -272,23 +275,9 @@ footer{text-align:center;color:var(--muted);font-size:.8rem;padding:28px 0 40px}
 
 <section class="m-a"><div class="wrap">
   <div class="lab rv">SAMPLE LEADS</div><h2 class="rv">What a lead sheet looks like</h2>
-  <p class="sub rv">Drag the handle: the left side is the clean view, the right side reveals my real spreadsheet.</p>
-  <div class="lg rv"><span>◀ CLEAN VIEW</span><span>REAL SHEET ▶</span></div>
-  <div class="sl rv"><div class="ba tbl">
-    <div class="ly af"><span class="ph">YOUR LEAD SHEET SCREENSHOT GOES HERE<br>(images/amazon-lead-sheet.png)</span><img src="images/amazon-lead-sheet.png" alt="Sample Amazon lead sheet showing buy cost, Amazon price, profit, ROI, monthly sales and seller count" loading="lazy" onerror="this.remove()"></div>
-    <div class="ly bf"><table>
-    <tr><th>Date</th><th>ASIN</th><th>Source</th><th>Buy cost</th><th>Amazon price</th><th>Profit</th><th>ROI</th><th>Sales/mo</th><th>Sellers</th><th>Note</th></tr>
-    <tr><td>07 Sep</td><td><span class="red"></span></td><td><span class="red"></span></td><td class="mono">$22.46</td><td class="mono">$75.99</td><td class="mono pos">$35.51</td><td><span class="roi mono">46.73%</span></td><td class="mono">50+</td><td class="mono">5</td><td>Amazon never on listing</td></tr>
-    <tr><td>07 Sep</td><td><span class="red"></span></td><td><span class="red"></span></td><td class="mono">$13.38</td><td class="mono">$25.50</td><td class="mono pos">$4.11</td><td><span class="roi mono">30.72%</span></td><td class="mono">100+</td><td class="mono">6</td><td>Amazon never on listing</td></tr>
-    <tr><td>07 Sep</td><td><span class="red"></span></td><td><span class="red"></span></td><td class="mono">$17.35</td><td class="mono">$34.99</td><td class="mono pos">$8.18</td><td><span class="roi mono">47.15%</span></td><td class="mono">50+</td><td class="mono">6</td><td>Amazon never on listing</td></tr>
-    <tr><td>08 Sep</td><td><span class="red"></span></td><td><span class="red"></span></td><td class="mono">$13.49</td><td class="mono">$52.00</td><td class="mono pos">$25.75</td><td><span class="roi mono">190.88%</span></td><td class="mono">50+</td><td class="mono">2</td><td>Amazon not seen in 6 months</td></tr>
-    <tr><td>08 Sep</td><td><span class="red"></span></td><td><span class="red"></span></td><td class="mono">$10.99</td><td class="mono">$25.95</td><td class="mono pos">$5.03</td><td><span class="roi mono">45.77%</span></td><td class="mono">50+</td><td class="mono">21</td><td>Amazon never on listing</td></tr>
-    <tr><td>09 Sep</td><td><span class="red"></span></td><td><span class="red"></span></td><td class="mono">$2.02</td><td class="mono">$10.00</td><td class="mono pos">$2.77</td><td><span class="roi mono">137.13%</span></td><td class="mono">50+</td><td class="mono">14</td><td>Amazon never on listing</td></tr>
-  </table></div>
-    <div class="line"></div><div class="knob">&#8596;</div>
-    <input type="range" min="0" max="100" value="50" aria-label="Lead sheet clean view and real sheet slider">
-  </div></div>
-  <p class="cap rv">Sample leads from my sheet. ASINs, titles and source links are hidden for client privacy.</p>
+  <p class="sub rv">A real sample from my sourcing sheet. ASINs, titles and source links are hidden for client privacy.</p>
+  <a class="leadshot rv" href="images/amazon-lead-sheet.png" target="_blank" rel="noopener noreferrer" aria-label="Open the full sample lead sheet screenshot in a new tab"><img src="images/amazon-lead-sheet.png" alt="Sample Amazon lead sheet showing buy cost, Amazon price, profit, ROI, monthly sales and seller count" loading="lazy"></a>
+  <p class="cap rv">Click the image to view it full size.</p>
 </div></section>
 
 <section class="m-a"><div class="wrap">
@@ -410,6 +399,7 @@ footer{text-align:center;color:var(--muted);font-size:.8rem;padding:28px 0 40px}
     ba.addEventListener('pointermove',function(e){if(drag)fromX(e.clientX);});
     ba.addEventListener('pointerup',function(){drag=false;});
     ba.addEventListener('pointercancel',function(){drag=false;});
+    ba.addEventListener('dragstart',function(e){e.preventDefault();});
     r.addEventListener('input',function(){setP(parseFloat(r.value));});
   });
 
