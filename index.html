@@ -516,29 +516,43 @@ footer{text-align:center;color:var(--muted);font-size:.8rem;padding:28px 0 40px}
     if(gl)gl.viewport(0,0,pc.width,pc.height);
   }
 
-  /* ---------- background music on/off (add your file as audio/background.mp3) ---------- */
-  var bgm=new Audio('audio/background.mp3');
+  /* ---------- background music on/off, with a separate track for each mode ---------- */
+  var TRACKS={shopify:'audio/shopify-music.mp3',amazon:'audio/amazon-music.mp3'};
+  var bgm=new Audio(TRACKS.shopify);
   bgm.loop=true; bgm.volume=0.35; bgm.preload='none';
   var sBtn=document.getElementById('soundToggle');
   var soundOn=false;
+  function curMode(){return B.getAttribute('data-mode')==='amazon'?'amazon':'shopify';}
   function paintSound(){
     if(!sBtn) return;
     sBtn.setAttribute('aria-pressed',String(soundOn));
     sBtn.textContent=soundOn?'🔊 Sound on':'🔈 Sound off';
   }
+  function playNow(){var p=bgm.play();if(p&&p.catch)p.catch(function(){});}
   bgm.addEventListener('error',function(){
     soundOn=false;
     if(sBtn){sBtn.disabled=true;sBtn.textContent='🔈 Music not added yet';}
   });
+  function loadMode(){
+    var want=TRACKS[curMode()];
+    if(bgm.src.indexOf(want)!==-1) return;
+    var wasOn=soundOn;
+    bgm.pause();
+    bgm.src=want;
+    if(sBtn) sBtn.disabled=false;
+    if(wasOn) playNow(); else soundOn=false;
+    paintSound();
+  }
   if(sBtn)sBtn.addEventListener('click',function(){
     if(sBtn.disabled)return;
     if(soundOn){bgm.pause();soundOn=false;}
-    else{var p=bgm.play();if(p&&p.catch)p.catch(function(){});soundOn=true;}
+    else{playNow();soundOn=true;}
     paintSound();
   });
+  new MutationObserver(loadMode).observe(B,{attributes:true,attributeFilter:['data-mode']});
   document.addEventListener('visibilitychange',function(){
     if(document.hidden){bgm.pause();}
-    else if(soundOn){var p=bgm.play();if(p&&p.catch)p.catch(function(){});}
+    else if(soundOn){playNow();}
   });
   paintSound();
 
