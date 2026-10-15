@@ -179,24 +179,16 @@ footer{text-align:center;color:var(--muted);font-size:.8rem;padding:28px 0 40px}
 .js .rv{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s ease;transition-delay:var(--d,0s)}
 .js .rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.tick .track,.cue{animation:none}.js .rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
-
-/* Plasma + attractor background */
-#plasma{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:-4;background:var(--bg)}
-#plasma{z-index:-4;background:var(--bg)}
-.scrim{position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(ellipse at 50% 46%,color-mix(in srgb,var(--bg) 62%,transparent),color-mix(in srgb,var(--bg) 26%,transparent) 80%)}
-.nogl #plasma{display:none}
-.tcaret{display:inline-block;width:3px;height:.9em;margin-left:2px;background:currentColor;vertical-align:-.08em;animation:tblink 1s steps(1) infinite}
-@keyframes tblink{50%{opacity:0}}
-.sound-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:26;font:inherit;font-weight:700;font-size:.8rem;color:var(--ink);background:color-mix(in srgb,var(--surface) 88%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:999px;padding:8px 14px;cursor:pointer}
-.sound-btn:hover{border-color:var(--accent)}
-.sound-btn[aria-pressed="true"]{background:var(--accent);color:var(--on);border-color:var(--accent)}
-.sound-btn:disabled{opacity:.55;cursor:not-allowed}
 </style>
 </head>
 <body data-mode="shopify">
 <script>document.documentElement.classList.add('js')</script>
-<canvas id="plasma" aria-hidden="true"></canvas>
-<div class="scrim" aria-hidden="true"></div>
+<video id="bgv" muted loop playsinline preload="metadata" poster="images/liquid-glass-poster.jpg" aria-hidden="true" tabindex="-1">
+  <source src="images/liquid-glass.webm" type="video/webm">
+  <source src="images/liquid-glass.mp4" type="video/mp4">
+</video>
+<div class="bgscrim" aria-hidden="true"></div>
+<canvas id="bgfx" aria-hidden="true"></canvas>
 <div class="stack">
   <div class="tick"><div class="track">
     <span><a href="https://calendar.app.google/ESJeCoB843cVoZxm7" target="_blank" rel="noopener noreferrer">👉 Let's Talk About Your Business 📅</a></span><span>✦ Shopify Expert</span><span>✦ E-Commerce Solutions</span><span>✦ Store Optimization</span><span>✦ Amazon Product Sourcing</span><span>✦ Happy Brands</span>
@@ -455,134 +447,92 @@ footer{text-align:center;color:var(--muted);font-size:.8rem;padding:28px 0 40px}
 })();
 </script>
 <script>
-/* Domain-warp plasma (WebGL) with iso-contour lines drawn on the same field. Reacts to the cursor, scrolling and optional sound. */
+/* Liquid Glass background: translucent, slowly morphing glass blobs and floating glass spheres */
 (function(){
-  var root=document.documentElement,B=document.body;
+  var cv=document.getElementById('bgfx');if(!cv||!cv.getContext)return;
+  var ctx=cv.getContext('2d'),W=0,H=0,U=1000,small=false,dpr=Math.min(window.devicePixelRatio||1,1.5),blobs=[],orbs=[];
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var pc=document.getElementById('plasma');
-  var PAL={shopify:{a:[63,199,155],b:[149,191,71],bg:[6,18,13]},amazon:{a:[255,153,0],b:[96,150,230],bg:[11,22,38]}};
-  var cur={a:[63,199,155],b:[149,191,71],bg:[6,18,13]};
-  function mode(){return B.getAttribute('data-mode')==='amazon'?'amazon':'shopify';}
-  var mx=.5,my=.5,tx=.5,ty=.5,scrollN=0,bass=0,treb=0,W=1,H=1;
-
-  /* ---------- WebGL plasma + iso-contours ---------- */
-  var gl=pc?pc.getContext('webgl',{antialias:false,alpha:false}):null,prog=null,U={};
-  function sh(type,src){var s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS)){console.warn(gl.getShaderInfoLog(s));return null;}return s;}
-  if(gl){
-    var VS='attribute vec2 p;void main(){gl_Position=vec4(p,0.0,1.0);}';
-    var FS=[
-      'precision mediump float;',
-      'uniform vec2 uRes;uniform float uTime;uniform vec2 uMouse;uniform float uBass;uniform float uScroll;',
-      'uniform vec3 uA;uniform vec3 uB;uniform vec3 uBg;',
-      'void main(){',
-      ' vec2 q=(gl_FragCoord.xy/uRes)*2.0-1.0; q.x*=uRes.x/uRes.y;',
-      ' vec2 m=uMouse*2.0-1.0; m.x*=uRes.x/uRes.y;',
-      ' float t=uTime*0.12;',
-      ' vec2 u=q*2.2+vec2(0.0,uScroll*0.6);',
-      ' vec2 d=u-m*1.1; float g=exp(-dot(d,d)*0.7); u+=d*g*(0.45+uBass*0.6);',
-      ' float w=0.9+uBass*0.9;',
-      ' for(int i=0;i<3;i++){float fi=float(i); u+=w*vec2(sin(u.y*1.3+1.2+t+fi),cos(u.x*1.1-0.7+t+fi));}',
-      ' float t1=0.5+0.5*sin(u.x+0.6*sin(u.y+t));',
-      ' float t2=0.5+0.5*sin(u.y*1.2+u.x*0.7-t);',
-      ' float tt=clamp(0.6*t1+0.4*t2,0.0,1.0);',
-      ' float st=0.5+0.5*sin(tt*18.0);',
-      ' vec3 col=mix(uBg,uA,pow(tt,1.6)); col*=0.85+0.15*st;',
-      ' float hi=clamp((tt-0.75)/0.25,0.0,1.0); col=mix(col,uB,0.5*hi);',
-      ' float ph=tt*12.0-t*0.8;',
-      ' float f=fract(ph); float dl=min(f,1.0-f);',
-      ' float wdt=0.035+0.02*uBass;',
-      ' float line=1.0-smoothstep(0.0,wdt,dl);',
-      ' float glow=exp(-dot(d,d)*0.9);',
-      ' vec3 lc=mix(uA,vec3(1.0),0.45);',
-      ' col=mix(col,lc,line*(0.28+0.30*glow+0.15*uBass));',
-      ' gl_FragColor=vec4(col,1.0);',
-      '}'].join('\n');
-    var vs=sh(gl.VERTEX_SHADER,VS),fs=sh(gl.FRAGMENT_SHADER,FS);
-    prog=(vs&&fs)?gl.createProgram():null;
-    if(prog){gl.attachShader(prog,vs);gl.attachShader(prog,fs);gl.bindAttribLocation(prog,0,'p');gl.linkProgram(prog);}
-    if(!prog||!gl.getProgramParameter(prog,gl.LINK_STATUS)){root.classList.add('nogl');gl=null;}
-    else{
-      gl.useProgram(prog);
-      var buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);
-      gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
-      gl.enableVertexAttribArray(0);gl.vertexAttribPointer(0,2,gl.FLOAT,false,0,0);
-      ['uRes','uTime','uMouse','uBass','uScroll','uA','uB','uBg'].forEach(function(n){U[n]=gl.getUniformLocation(prog,n);});
-    }
-  }else{root.classList.add('nogl');}
-
+  var mouse={x:-9999,y:-9999},cur={a:[52,211,153],b:[96,150,190]};
+  function target(){return document.body.getAttribute('data-mode')==='amazon'?{a:[255,150,40],b:[80,130,175]}:{a:[52,211,153],b:[96,150,190]};}
+  function lerp(c,t,k){for(var i=0;i<3;i++)c[i]+=(t[i]-c[i])*k;}
+  function rgba(c,a){return 'rgba('+(c[0]|0)+','+(c[1]|0)+','+(c[2]|0)+','+a+')';}
+  function init(){
+    small=W<700;U=Math.max(W,H);
+    var B=[[.16,.38,.22,1.1,.9,'a',0],[.46,.78,.2,1,1.1,'b',1.7],[.82,.24,.21,1.05,.95,'b',3.1],[.76,.84,.17,1,1,'a',4.4],[.42,.1,.15,1.1,.85,'b',5.2],[.95,.6,.16,.9,1.1,'b',2.4]];
+    blobs=B.slice(0,small?4:6).map(function(b){return {x:b[0],y:b[1],r:b[2]*(small?1.25:1),ax:b[3],ay:b[4],c:b[5],p:b[6]};});
+    orbs=[];var n=small?8:16;
+    for(var i=0;i<n;i++)orbs.push({x:Math.random(),y:Math.random(),r:(5+Math.random()*24)*(U/1400+.4),p:Math.random()*6.28,s:.5+Math.random(),v:.4+Math.random()*.8,d:.3+Math.random()*.9,dark:Math.random()<.2,c:Math.random()<.5?'a':'b'});
+  }
   function resize(){
     W=window.innerWidth;H=window.innerHeight;
-    if(pc){pc.width=Math.max(2,Math.round(W*0.6));pc.height=Math.max(2,Math.round(H*0.6));}
-    if(gl)gl.viewport(0,0,pc.width,pc.height);
+    cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);init();
+    if(reduce)draw(0);
   }
-
-  /* ---------- background music on/off, with a separate track for each mode ---------- */
-  var TRACKS={shopify:'audio/shopify-music.mp3',amazon:'audio/amazon-music.mp3'};
-  var bgm=new Audio(TRACKS.shopify);
-  bgm.loop=true; bgm.volume=0.35; bgm.preload='none';
-  var sBtn=document.getElementById('soundToggle');
-  var soundOn=false;
-  function curMode(){return B.getAttribute('data-mode')==='amazon'?'amazon':'shopify';}
-  function paintSound(){
-    if(!sBtn) return;
-    sBtn.setAttribute('aria-pressed',String(soundOn));
-    sBtn.textContent=soundOn?'🔊 Sound on':'🔈 Sound off';
-  }
-  function playNow(){var p=bgm.play();if(p&&p.catch)p.catch(function(){});}
-  bgm.addEventListener('error',function(){
-    soundOn=false;
-    if(sBtn){sBtn.disabled=true;sBtn.textContent='🔈 Music not added yet';}
-  });
-  function loadMode(){
-    var want=TRACKS[curMode()];
-    if(bgm.src.indexOf(want)!==-1) return;
-    var wasOn=soundOn;
-    bgm.pause();
-    bgm.src=want;
-    if(sBtn) sBtn.disabled=false;
-    if(wasOn) playNow(); else soundOn=false;
-    paintSound();
-  }
-  if(sBtn)sBtn.addEventListener('click',function(){
-    if(sBtn.disabled)return;
-    if(soundOn){bgm.pause();soundOn=false;}
-    else{playNow();soundOn=true;}
-    paintSound();
-  });
-  new MutationObserver(loadMode).observe(B,{attributes:true,attributeFilter:['data-mode']});
-  document.addEventListener('visibilitychange',function(){
-    if(document.hidden){bgm.pause();}
-    else if(soundOn){playNow();}
-  });
-  paintSound();
-
-  /* ---------- pointer, scroll, resize ---------- */
-  window.addEventListener('pointermove',function(e){mx=e.clientX/Math.max(1,W);my=e.clientY/Math.max(1,H);},{passive:true});
-  window.addEventListener('pointerleave',function(){mx=.5;my=.5;});
-  window.addEventListener('scroll',function(){scrollN=Math.min(1.5,(window.scrollY||0)/Math.max(1,H)*0.5);},{passive:true});
-  window.addEventListener('resize',resize);
-
-  /* ---------- main loop ---------- */
-  function tick(t){
-    if(!document.hidden){
-      var P=PAL[mode()],k,j;
-      for(k in P){for(j=0;j<3;j++)cur[k][j]+=(P[k][j]-cur[k][j])*0.04;}
-      tx+=(mx-tx)*0.08;ty+=(my-ty)*0.08;
-      if(gl){
-        gl.useProgram(prog);
-        gl.uniform2f(U.uRes,pc.width,pc.height);gl.uniform1f(U.uTime,t/1000);
-        gl.uniform2f(U.uMouse,tx,1-ty);gl.uniform1f(U.uBass,bass);gl.uniform1f(U.uScroll,scrollN);
-        gl.uniform3f(U.uA,cur.a[0]/255,cur.a[1]/255,cur.a[2]/255);
-        gl.uniform3f(U.uB,cur.b[0]/255,cur.b[1]/255,cur.b[2]/255);
-        gl.uniform3f(U.uBg,cur.bg[0]/255,cur.bg[1]/255,cur.bg[2]/255);
-        gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+  function mid(a,b){return [(a[0]+b[0])/2,(a[1]+b[1])/2];}
+  function draw(t){
+    lerp(cur.a,target().a,.05);lerp(cur.b,target().b,.05);
+    var px=mouse.x>-999?mouse.x/W-.5:0,py=mouse.y>-999?mouse.y/H-.5:0,sy=window.scrollY||0,i,k;
+    ctx.clearRect(0,0,W,H);
+    for(i=0;i<blobs.length;i++){
+      var b=blobs[i],col=b.c==='a'?cur.a:cur.b,R=b.r*U,
+          cx=W*(b.x+.04*Math.sin(t*.00011+b.p))-px*34*(1+i*.2),
+          cy=H*(b.y+.04*Math.cos(t*.00009+b.p))-sy*.03*(1+i*.15)-py*24*(1+i*.2),
+          N=small?56:84,pts=[];
+      for(k=0;k<N;k++){
+        var th=k/N*6.2832,rr=R*(1+.16*Math.sin(2*th+t*.00031+b.p)+.11*Math.sin(3*th-t*.00027+b.p*1.3)+.06*Math.sin(5*th+t*.00041+b.p*.7));
+        pts.push([cx+Math.cos(th)*rr*b.ax,cy+Math.sin(th)*rr*b.ay]);
       }
+      var path=new Path2D(),m0=mid(pts[N-1],pts[0]);path.moveTo(m0[0],m0[1]);
+      for(k=0;k<N;k++){var p=pts[k],m=mid(p,pts[(k+1)%N]);path.quadraticCurveTo(p[0],p[1],m[0],m[1]);}
+      path.closePath();
+      var g=ctx.createRadialGradient(cx-.15*R,cy-.2*R,0,cx-.05*R,cy-.05*R,R*1.3);
+      g.addColorStop(0,rgba(col,.02));g.addColorStop(.55,rgba(col,.07));g.addColorStop(.88,rgba(col,.22));g.addColorStop(1,rgba(col,.38));
+      ctx.globalCompositeOperation='screen';ctx.fillStyle=g;ctx.fill(path);
+      var lg=ctx.createLinearGradient(cx-R,cy-R,cx+R,cy+R);
+      lg.addColorStop(0,'rgba(255,255,255,.55)');lg.addColorStop(.45,rgba(col,.28));lg.addColorStop(1,'rgba(255,255,255,.14)');
+      ctx.strokeStyle=lg;ctx.lineWidth=1.6;ctx.stroke(path);
+      ctx.save();ctx.translate(cx,cy);ctx.scale(.9,.9);ctx.translate(-cx,-cy);ctx.strokeStyle='rgba(255,255,255,.1)';ctx.lineWidth=1;ctx.stroke(path);ctx.restore();
+      ctx.strokeStyle='rgba(255,255,255,.34)';ctx.lineWidth=3;ctx.lineCap='round';
+      ctx.beginPath();ctx.ellipse(cx,cy,R*b.ax*.82,R*b.ay*.82,-.3,3.4,4.2);ctx.stroke();
+      ctx.fillStyle='rgba(255,255,255,.3)';ctx.beginPath();ctx.ellipse(cx-R*.45*b.ax,cy-R*.5*b.ay,R*.07,R*.035,-.6,0,6.2832);ctx.fill();
     }
-    if(!reduce)requestAnimationFrame(tick);
+    ctx.globalCompositeOperation='source-over';
+    for(i=0;i<orbs.length;i++){
+      var o=orbs[i],oc=o.c==='a'?cur.a:cur.b,
+          x=o.x*W+Math.sin(t*.0003*o.s+o.p)*24-px*45*o.d,
+          y=o.y*H-t*.012*o.v-sy*.05*o.d-py*30*o.d;
+      y=((y%(H+80))+(H+80))%(H+80)-40;
+      var og=ctx.createRadialGradient(x-.3*o.r,y-.35*o.r,0,x,y,o.r);
+      if(o.dark){og.addColorStop(0,'rgba(90,110,130,.55)');og.addColorStop(.4,'rgba(15,25,35,.85)');og.addColorStop(1,'rgba(5,10,15,.95)');}
+      else{og.addColorStop(0,'rgba(255,255,255,.55)');og.addColorStop(.35,rgba(oc,.14));og.addColorStop(1,rgba(oc,.5));}
+      ctx.fillStyle=og;ctx.beginPath();ctx.arc(x,y,o.r,0,6.2832);ctx.fill();
+      ctx.strokeStyle='rgba(255,255,255,.3)';ctx.lineWidth=1;ctx.stroke();
+      ctx.fillStyle='rgba(255,255,255,.7)';ctx.beginPath();ctx.arc(x-.35*o.r,y-.4*o.r,Math.max(1,o.r*.16),0,6.2832);ctx.fill();
+    }
   }
-  resize();tick(0);
+  window.addEventListener('resize',resize);
+  window.addEventListener('pointermove',function(e){mouse.x=e.clientX;mouse.y=e.clientY;},{passive:true});
+  window.addEventListener('pointerleave',function(){mouse.x=mouse.y=-9999;});
+  resize();
+  if(!reduce){(function loop(t){if(!document.hidden&&!document.documentElement.classList.contains('vid-on'))draw(t);requestAnimationFrame(loop);})(0);}
 })();
 </script>
+<script>
+/* Liquid Glass looping video background: turns on only when the video really loads */
+(function(){
+  var v=document.getElementById('bgv');if(!v)return;
+  var root=document.documentElement;
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var saver=navigator.connection&&navigator.connection.saveData;
+  if(reduce||saver){v.removeAttribute('autoplay');v.preload='none';return;}
+  v.muted=true;
+  function ok(){root.classList.add('vid-on');var p=v.play();if(p&&p.catch)p.catch(function(){});}
+  v.addEventListener('canplay',ok,{once:true});
+  document.addEventListener('visibilitychange',function(){if(document.hidden)v.pause();else if(root.classList.contains('vid-on'))v.play().catch(function(){});});
+  v.load();
+})();
+</script>
+
 
 <script>
 /* Typewriter headline: types the visible hero title letter by letter with a blinking caret.
