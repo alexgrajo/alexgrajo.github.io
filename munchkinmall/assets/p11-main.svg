@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Play kitchen placeholder">
+  <rect width="800" height="800" fill="#E8FFF2"/>
+  <rect x="150" y="300" width="500" height="420" rx="20" fill="#075E46"/>
+  <rect x="180" y="360" width="140" height="70" rx="12" fill="#9ff5cd" opacity=".85"/>
+  <circle cx="470" cy="395" r="18" fill="#E8FFF2"/><circle cx="530" cy="395" r="18" fill="#E8FFF2"/><circle cx="590" cy="395" r="18" fill="#E8FFF2"/>
+  <rect x="180" y="480" width="440" height="180" rx="12" fill="#F4FFF8"/>
+  <text x="400" y="180" font-family="Georgia,serif" font-size="72" font-weight="700" fill="#075E46" text-anchor="middle">Mini Play Kitchen</text>
+  <text x="400" y="240" font-family="Arial" font-size="34" fill="#5F6F67" text-anchor="middle">Ages 18 months – 6 years</text>
+  <text x="400" y="600" font-family="Arial" font-size="30" fill="#5F6F67" text-anchor="middle">Premium product photography loading…</text>
+</svg>

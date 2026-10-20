@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Dollhouse placeholder">
+  <rect width="800" height="800" fill="#E8FFF2"/>
+  <rect x="200" y="240" width="400" height="480" rx="16" fill="#075E46"/>
+  <rect x="230" y="290" width="150" height="120" rx="8" fill="#9ff5cd" opacity=".8"/>
+  <rect x="420" y="290" width="150" height="120" rx="8" fill="#F4FFF8"/>
+  <rect x="230" y="450" width="150" height="120" rx="8" fill="#F4FFF8"/>
+  <rect x="420" y="450" width="150" height="120" rx="8" fill="#9ff5cd" opacity=".8"/>
+  <path d="M200 240 L400 120 L600 240 Z" fill="#064A38"/>
+  <text x="400" y="90" font-family="Georgia,serif" font-size="68" font-weight="700" fill="#075E46" text-anchor="middle">Willow Lane Dollhouse</text>
+  <text x="400" y="600" font-family="Arial" font-size="30" fill="#5F6F67" text-anchor="middle">Three floors · Ages 3–8</text>
+  <text x="400" y="660" font-family="Arial" font-size="26" fill="#5F6F67" text-anchor="middle">Premium product photography loading…</text>
+</svg>

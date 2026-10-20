@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Story tiles placeholder">
+  <rect width="800" height="800" fill="#E8FFF2"/>
+  <rect x="180" y="260" width="130" height="130" rx="14" fill="#075E46"/>
+  <rect x="330" y="260" width="130" height="130" rx="14" fill="#9ff5cd"/>
+  <rect x="480" y="260" width="130" height="130" rx="14" fill="#064A38"/>
+  <rect x="180" y="410" width="130" height="130" rx="14" fill="#9ff5cd"/>
+  <rect x="330" y="410" width="130" height="130" rx="14" fill="#F4FFF8"/>
+  <rect x="480" y="410" width="130" height="130" rx="14" fill="#9ff5cd"/>
+  <text x="400" y="170" font-family="Georgia,serif" font-size="70" font-weight="700" fill="#075E46" text-anchor="middle">Story Tiles</text>
+  <text x="400" y="230" font-family="Arial" font-size="32" fill="#5F6F67" text-anchor="middle">36 magnetic story cards · Ages 3–8</text>
+  <text x="400" y="620" font-family="Arial" font-size="28" fill="#5F6F67" text-anchor="middle">Premium product photography loading…</text>
+</svg>
