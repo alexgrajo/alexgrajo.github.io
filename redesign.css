@@ -1,0 +1,53 @@
+/* Alex Grajo portfolio — calm editorial refresh */
+:root {
+  --bg: #f4f2ec !important;
+  --surface: #fffefa !important;
+  --surface2: #eae8df !important;
+  --accent: #256b55 !important;
+  --accent2: #a5c8a2 !important;
+  --accent3: #df9a67 !important;
+  --muted: #66716b !important;
+  --line: #d9ded7 !important;
+  --card-shadow: 0 18px 55px rgba(24, 50, 40, .08) !important;
+  --band-ink: #fffefa !important;
+}
+html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+body {
+  background: var(--bg) !important;
+  color: #17251f !important;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  letter-spacing: -.012em;
+}
+::selection { background: #c4dfc8; color: #173c31; }
+#root { overflow: clip; }
+#root > div { position: relative; }
+/* Give the page a quieter, more deliberate rhythm without changing its content. */
+#root section { scroll-margin-top: 96px; }
+#root section > div { max-width: 1120px !important; }
+#root section h2 { letter-spacing: -.045em; }
+#root section h3 { letter-spacing: -.025em; }
+#root .glass {
+  background: rgba(255, 254, 250, .84) !important;
+  border-color: var(--line) !important;
+  box-shadow: 0 12px 40px rgba(24, 50, 40, .055) !important;
+  backdrop-filter: blur(14px);
+}
+#root .grad-band { background: linear-gradient(125deg, #1f624d, #43866a 55%, #89a96e) !important; }
+#root .grad-bg { background: linear-gradient(135deg, #256b55, #6d9c70) !important; }
+#root .tcolor { color: #24372f; }
+#root a, #root button { -webkit-tap-highlight-color: transparent; }
+#root a { transition: color .2s ease, transform .25s ease, box-shadow .25s ease; }
+#root a:hover { color: #256b55; }
+#root button { transition: color .2s ease, background-color .2s ease, transform .2s ease; }
+#root .rounded-3xl, #root .rounded-\[32px\] { border-radius: 24px !important; }
+#root .rounded-2xl { border-radius: 16px !important; }
+#root img { border-radius: inherit; }
+#root footer { border-top: 1px solid var(--line); margin: 16px auto 0; padding: 28px 16px 36px !important; }
+:focus-visible { outline: 3px solid #df9a67 !important; outline-offset: 4px; }
+@media (max-width: 640px) {
+  #root section { padding-top: 52px !important; padding-bottom: 52px !important; }
+  #root .rounded-\[32px\] { border-radius: 22px !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
