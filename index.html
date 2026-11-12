@@ -83,7 +83,22 @@ footer{padding:36px 0;border-top:1px solid #ffffff14;color:var(--hz);font-size:.
 .rv{opacity:0;transform:translateY(28px);transition:opacity .9s var(--e),transform .9s var(--e)}.rv.in{opacity:1;transform:none}
 @media(max-width:820px){nav a:not(.btn){display:none}.stats,.mt{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr}.df{grid-template-columns:1fr}.df .k{border-bottom:0;padding-bottom:0}section{padding:72px 0}}
 @media(prefers-reduced-motion:reduce){*,::before,::after{animation:none!important;transition-duration:.01ms!important}.rv{opacity:1;transform:none}}
+.shot img,.cmp img,.pj .t img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center}
+.pj .t{position:relative;isolation:isolate;overflow:hidden}
+.pj .t:has(img:not([hidden]))::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 42%,#0b0a10d9);pointer-events:none}
+.pj .t span{position:relative;z-index:1}
 </style>
+<script>
+function restoreScreenshot(img) {
+  const previewPrefix = "./images/3d/";
+  const src = img.getAttribute("src");
+  if (src.startsWith(previewPrefix)) {
+    img.src = "./images/" + src.slice(previewPrefix.length);
+    return;
+  }
+  img.hidden = true;
+}
+</script>
 </head>
 <body>
 <div class="bg" aria-hidden="true"><i class="o1"></i><i class="o2"></i><i class="o3"></i></div>
@@ -98,7 +113,14 @@ footer{padding:36px 0;border-top:1px solid #ffffff14;color:var(--hz);font-size:.
 <div class="acts"><a class="btn b1" href="https://calendar.app.google/ESJeCoB843cVoZxm7" target="_blank" rel="noopener">Book a call ↗</a><a class="btn b2" href="#work">See recent store work ↓</a></div>
 <button class="sw" id="sw" role="switch" aria-checked="false" aria-label="Brand styling"><i></i><span>Template</span><span>Brand</span></button>
 <div class="stage"><div class="bar"><i></i><i></i><i></i><span style="margin-left:10px">shopmunchkinmall.com</span></div>
-<div class="shot"><span>Munchkin Mall before redesign</span><div class="shot a"><span>Munchkin Mall after redesign</span></div></div></div>
+<div class="shot">
+  <span aria-hidden="true">Munchkin Mall before redesign</span>
+  <img src="./images/3d/munchkinmall-before.jpg" alt="Munchkin Mall before redesign" width="900" height="559" decoding="async" onerror="restoreScreenshot(this)">
+  <div class="shot a" aria-hidden="true">
+    <span aria-hidden="true">Munchkin Mall after redesign</span>
+    <img src="./images/3d/munchkinmall-after.jpg" alt="Munchkin Mall after redesign" width="900" height="559" decoding="async" onerror="restoreScreenshot(this)">
+  </div>
+</div></div>
 <div class="notes"><span>Redesigned homepage and hero banner</span><span>Clearer toy category browsing</span><span>Refreshed colors, typography, and imagery</span></div>
 </div></section>
 
@@ -120,8 +142,8 @@ const stats=[["5+","Shopify stores built"],["7","core Shopify skills"],["167","s
 const brands=["Munchkin Mall","HallunaCo.","Lovelle","Coldbrook Outfitters","Inzinnergy","ORVO","StoneStream","Olyvo Labs","Verilia"];
 const sv=[["Shopify Store Setup","From a blank account to a launch-ready storefront: settings, sales channels and everything that has to be right before you sell.",["Store setup & settings","Payments & shipping zones","Markets, taxes & currencies"]],["Theme Customization","Customizing Dawn, Shrine and premium themes so the storefront actually matches the brand instead of looking like a template.",["Dawn, Shrine & premium themes","Sections & layout changes","Typography, colour & branding"]],["Liquid Edits & Code Tweaks","Hand-editing Shopify Liquid, HTML, CSS and JSON templates for the changes the theme editor can’t reach.",["Liquid template edits","HTML · CSS · JSON","Custom sections & snippets"]],["Product & Collection Setup","Listing products properly: variants, options, metafields, tags and collections that make a catalogue easy to browse and buy.",["Product listings & variants","Metafields & tags","Collections & merchandising"]],["Navigation & Store Architecture","Menus, mega menus, filters, search and breadcrumbs arranged so customers reach the right product in a couple of clicks.",["Menus & mega menus","Filters & site search","Breadcrumbs & URL structure"]],["App Integration & Configuration","Choosing and installing the right apps (reviews, email, upsells, shipping) and wiring them into the theme cleanly.",["Reviews & email apps","Upsells & bundles","Shipping & label tools"]],["Responsive & Mobile-First Storefronts","Every build is tested on phone, tablet and desktop for layout, speed and a checkout flow that works everywhere.",["Mobile & tablet QA","Image sizing & page speed","Cross-device checkout"]]];
 const routes=[["Starting from a blank account","Store Launch","Setup, theme customization, product and collection structure, apps and mobile QA, from a blank account to a launch-ready store."],["Live, but it looks like the theme","Store Refresh","Redesign of an existing store: theme edits, Liquid tweaks, product SEO and a conversion-focused homepage."],["Selling, and short on hands","Monthly Store Care","Ongoing product listings, order and inventory support, email campaigns and a monthly performance summary."]];
-const pj=[["Munchkin Mall","Store redesign","Redesigned a basic Shopify storefront into a playful, cohesive shopping experience with clearer categories, refreshed product displays, and a welcoming family-focused design.","https://shopmunchkinmall.com/"],["HallunaCo.","Shrine theme · Single product","Built and customized a professional single-product Shopify store using the Shrine theme, focusing on product presentation, user experience, trust elements, and a conversion-focused layout.","https://hallunaco.com/"],["Lovelle","Landing page","Fashion and activewear store on Shopify for the Sweden, Denmark and United Kingdom markets. I built the landing page with AI tools, including the main call-to-action buttons and trust badges for free shipping, 30-day returns and Klarna payments.","https://lovelle.se/"],["Coldbrook Outfitters","Minimog theme","Minimog theme customization, menu and collection navigation, product bundles and clear product pages.","https://coldbrookoutfitters.com/"],["Inzinnergy","Minimog theme","Minimog theme customization, product landing pages, bundle collections, trust badges and order tracking setup.","https://inzinnergy.com/"],["ORVO","Store setup","AI-assisted outdoor and workshop gear store. I set up the collections, edited the store text and tested the checkout flow.","https://orvo.se/"],["StoneStream","Product listing · SEO","Managed product listing and optimization workflows for an established e-commerce brand, including product content, SEO optimization, inventory management, and email marketing automation.","https://www.stone-stream.com/"],["Olyvo Labs","Store design · Branding","Built and customized the Shopify storefront with a focus on product presentation, page structure, navigation, collections, and brand consistency.","https://olyvolabs.com/"],["Verilia","Store design · Branding","Created and customized a modern Shopify storefront with a strong focus on visual presentation, product positioning, brand consistency, and customer journey.","https://verilia.shop/"]];
-const tf=[["HallunaCo.","https://hallunaco.com/","From a basic Shopify draft to a professional, conversion-focused brand experience.",["New design using Shrine theme","Optimized product page","Improved user experience","Added trust elements","Mobile responsive","Conversion-focused layout"]],["Munchkin Mall","https://shopmunchkinmall.com/","Redesigned a basic Shopify storefront into a playful, cohesive shopping experience with clearer categories, refreshed product displays, and a welcoming family-focused design.",["Redesigned homepage and hero banner","Clearer toy category browsing","Refreshed colors, typography, and imagery","Updated product cards and shopping buttons","Reorganized customer review section","Added FAQ and delivery information sections"]]];
+const pj=[["Munchkin Mall","Store redesign","Redesigned a basic Shopify storefront into a playful, cohesive shopping experience with clearer categories, refreshed product displays, and a welcoming family-focused design.","https://shopmunchkinmall.com/","3d/munchkinmall-after.jpg"],["HallunaCo.","Shrine theme · Single product","Built and customized a professional single-product Shopify store using the Shrine theme, focusing on product presentation, user experience, trust elements, and a conversion-focused layout.","https://hallunaco.com/","hallunaco-after.jpg"],["Lovelle","Landing page","Fashion and activewear store on Shopify for the Sweden, Denmark and United Kingdom markets. I built the landing page with AI tools, including the main call-to-action buttons and trust badges for free shipping, 30-day returns and Klarna payments.","https://lovelle.se/","lovelle.jpg"],["Coldbrook Outfitters","Minimog theme","Minimog theme customization, menu and collection navigation, product bundles and clear product pages.","https://coldbrookoutfitters.com/","coldbrook.jpg"],["Inzinnergy","Minimog theme","Minimog theme customization, product landing pages, bundle collections, trust badges and order tracking setup.","https://inzinnergy.com/","inzinnergy.jpg"],["ORVO","Store setup","AI-assisted outdoor and workshop gear store. I set up the collections, edited the store text and tested the checkout flow.","https://orvo.se/","orvo.jpg"],["StoneStream","Product listing · SEO","Managed product listing and optimization workflows for an established e-commerce brand, including product content, SEO optimization, inventory management, and email marketing automation.","https://www.stone-stream.com/","stonestream.jpg"],["Olyvo Labs","Store design · Branding","Built and customized the Shopify storefront with a focus on product presentation, page structure, navigation, collections, and brand consistency.","https://olyvolabs.com/","olyvo.jpg"],["Verilia","Store design · Branding","Created and customized a modern Shopify storefront with a strong focus on visual presentation, product positioning, brand consistency, and customer journey.","https://verilia.shop/","verilia.jpg"]];
+const tf=[["HallunaCo.","hallunaco","From a basic Shopify draft to a professional, conversion-focused brand experience.",["New design using Shrine theme","Optimized product page","Improved user experience","Added trust elements","Mobile responsive","Conversion-focused layout"]],["Munchkin Mall","3d/munchkinmall","Redesigned a basic Shopify storefront into a playful, cohesive shopping experience with clearer categories, refreshed product displays, and a welcoming family-focused design.",["Redesigned homepage and hero banner","Clearer toy category browsing","Refreshed colors, typography, and imagery","Updated product cards and shopping buttons","Reorganized customer review section","Added FAQ and delivery information sections"]]];
 const df=[["First impression","The theme’s demo fonts, colours and layout.","Sections, layout, typography and colour changed until the storefront matches the brand."],["Product pages","Whatever blocks the theme ships with.","Optimized product pages with clean variants, options, metafields and clear shopping buttons."],["Finding products","A default menu and one long collection.","Menus, filters, search and breadcrumbs arranged so customers reach the right product in a couple of clicks."],["Trust","Nothing for a first-time buyer to go on.","Trust badges, a reviews section, FAQ and delivery information where shoppers look for them."],["Mobile","Checked in a desktop preview.","Tested on phone, tablet and desktop for layout, speed and a checkout flow that works everywhere."],["After launch","Listings and updates pile up.","Ongoing product listings, order and inventory support, email campaigns and a monthly performance summary."]];
 const st=[["Discovery call","Goals, products, timeline."],["Setup & design","Theme, structure, apps."],["Mobile QA & checkout test","Phone, tablet and desktop, with a run through checkout."],["Launch, review & adjust","Go live, look at how it performs, and adjust."]];
 const ex=[["Amazon Product Sourcing","Freelance","","FBM and FBA arbitrage leads with Keepa and Stealth Seller: gated checks, ROI, net profit and sources."],["Product Lister & Inventory Management","StoneStream","Jan 2025 – Jul 2026","Managed product listing, SEO, inventory tracking, product content, order accuracy, and email marketing automation."],["Healthcare Associate","Elevance Health","Nov 2024 – Nov 2025","Supported customer and healthcare related processes with accuracy, attention to detail, and professional communication."],["Customer Representative II","TELUS Digital","Dec 2022 – Sep 2024","Provided multi-channel customer support, resolved customer inquiries, and ensured customer satisfaction."],["Customer Service Representative","Teleperformance","Jan 2022 – Dec 2022","Handled customer inquiries, benefits verification, and support-related questions."]];
@@ -132,8 +154,34 @@ $("brands").innerHTML=L(brands.concat(brands),b=>`<span>${b}</span>`);
 $("sv").innerHTML=L(sv,(s,i)=>`<article class="p sv"><span class="n">0${i+1}</span><h3>${s[0]}</h3><p>${s[1]}</p><ul class="pt">${L(s[2],x=>`<li>${x}</li>`)}</ul></article>`);
 $("routes").innerHTML=L(routes,r=>`<article class="p rt"><small>${r[0]}</small><h3>${r[1]}</h3><p>${r[2]}</p></article>`);
 const hues=["#7c6cf0","#f48bb1","#ffae8f","#4b9fb5","#8f7bd9","#d98b5f","#5f8fd9","#c46a9a","#6fae8f"];
-$("rail").innerHTML=L(pj,(p,i)=>`<article class="p pj"><div class="t" style="background:linear-gradient(135deg,#191622,${hues[i]})">${p[0]}</div><div class="in"><span class="tag" style="margin:0">${p[1]}</span><p>${p[2]}</p><a href="${p[3]}" target="_blank" rel="noopener">Visit store ↗</a></div></article>`);
-$("tf").innerHTML=L(tf,(t,i)=>`<article class="p rt"><small>Before / after</small><h3>${t[0]}</h3><p>${t[2]}</p><div class="cmp"><div>Before</div><div class="af" id="af${i}">After</div><span class="ln" id="ln${i}"></span><input type="range" min="0" max="100" value="50" aria-label="Compare before and after for ${t[0]}" data-i="${i}"></div><ul class="ch">${L(t[3],x=>`<li>${x}</li>`)}</ul></article>`);
+$("rail").innerHTML=L(pj,([name,category,description,url,image],i)=>`
+  <article class="p pj">
+    <div class="t" style="background:linear-gradient(135deg,#191622,${hues[i]})">
+      <img src="./images/${image}" alt="" loading="lazy" decoding="async" draggable="false" onerror="restoreScreenshot(this)">
+      <span>${name}</span>
+    </div>
+    <div class="in">
+      <span class="tag" style="margin:0">${category}</span><p>${description}</p>
+      <a href="${url}" target="_blank" rel="noopener">Visit store ↗</a>
+    </div>
+  </article>`);
+$("tf").innerHTML=L(tf,([name,imageBase,description,changes],i)=>`
+  <article class="p rt">
+    <small>Before / after</small><h3>${name}</h3><p>${description}</p>
+    <div class="cmp">
+      <div>
+        <span aria-hidden="true">Before</span>
+        <img src="./images/${imageBase}-before.jpg" alt="${name} before redesign" loading="lazy" decoding="async" onerror="restoreScreenshot(this)">
+      </div>
+      <div class="af" id="af${i}">
+        <span aria-hidden="true">After</span>
+        <img src="./images/${imageBase}-after.jpg" alt="${name} after redesign" loading="lazy" decoding="async" onerror="restoreScreenshot(this)">
+      </div>
+      <span class="ln" id="ln${i}"></span>
+      <input type="range" min="0" max="100" value="50" aria-label="Compare before and after for ${name}" data-i="${i}">
+    </div>
+    <ul class="ch">${L(changes,x=>`<li>${x}</li>`)}</ul>
+  </article>`);
 $("an").innerHTML=`<small class="tag">Analytics · Munchkin Mall · Aug 31 – Sep 8, 2026</small><div class="mt">${L([["Total sales","$1,128.87"],["Orders","9"],["Sessions","167"],["Conversion rate","5.38%"]],m=>`<div><b class="glow">${m[1]}</b><span>${m[0]}</span></div>`)}</div><p style="color:var(--mi);font-size:.9rem">Total sales include $1,089.87 in gross sales and $39.00 in shipping charges. These figures describe this reporting period; they do not isolate the impact of the redesign.</p>`;
 $("df").innerHTML=`<div class="df"><span></span><span class="tag" style="padding:18px 14px;margin:0">Template</span><span class="tag glow" style="padding:18px 14px;margin:0">Brand</span></div>`+L(df,r=>`<div class="df"><div class="k">${r[0]}</div><div class="t">${r[1]}</div><div class="bd">${r[2]}</div></div>`);
 $("st").innerHTML=L(st,s=>`<article class="p"><h3>${s[0]}</h3><p>${s[1]}</p></article>`);
@@ -164,7 +212,15 @@ ph.style.setProperty("--o",d?Math.max(.55,1-scrollY/innerHeight*.45).toFixed(2):
 if(rm2)u(0);else{const f=t=>{u(t);requestAnimationFrame(f)};requestAnimationFrame(f)}
 addEventListener("resize",()=>u(0));
 const hero=$("home"),sw=$("sw"),rm=matchMedia("(prefers-reduced-motion:reduce)").matches;let touched=false;
-const set=m=>{hero.dataset.m=m;sw.setAttribute("aria-checked",m==="brand")};
+const beforeShot = hero.querySelector(".shot > img");
+const afterShot = hero.querySelector(".shot.a");
+const set = mode => {
+  const brand = mode === "brand";
+  hero.dataset.m = mode;
+  sw.setAttribute("aria-checked", brand);
+  beforeShot.setAttribute("aria-hidden", brand);
+  afterShot.setAttribute("aria-hidden", !brand);
+};
 rm?set("brand"):setTimeout(()=>{if(!touched)set("brand")},1400);
 sw.onclick=()=>{touched=true;set(hero.dataset.m==="brand"?"template":"brand")};
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.08});
