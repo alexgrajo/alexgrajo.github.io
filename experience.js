@@ -1124,7 +1124,7 @@ function buildProjectAisle(group, m) {
             url: {
                 StoneStream: 'https://www.stone-stream.com/',
                 'Olyvo Labs': 'https://olyvolabs.com/',
-                Verilia: 'https://verilia.shop/',
+                Verilia: 'https://verelia.co/',
                 'HallunaCo.': 'https://hallunaco.com/',
                 'Munchkin Mall': 'https://shopmunchkinmall.com/',
             }[project.title],
